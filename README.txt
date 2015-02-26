@@ -31,6 +31,7 @@ Back in the host command prompt you are in an ssh session on the VM
 
   you can restart with "vagrant up"
   The provisioning with the shell scripts will not be repeated.
+  Caution: The scripts at this time are NOT idempotent.
 
 
 Note:
