@@ -9,21 +9,27 @@ Vagrant.configure('2') do |config|
 
   #config.vm.synced_folder 'postgres_bootstrap', '/mnt/bootstrap', '.', :create => true
 
-  # -- base setup --
-  config.vm.provision :shell, path: 'setup/base_setup.sh'
+  # -- environmental variables --
+  config.vm.provision :shell, path: 'setup/environmental_variables.sh'
+
+  # -- common build dependencies --
+  config.vm.provision :shell, path: 'setup/common_build_dependencies.sh'
+
+  # -- encodings --
+  config.vm.provision :shell, path: 'setup/encodings.sh'
 
   # -- APPUSER as linux user --
   config.vm.provision :shell, path: 'setup/app_user_as_linux_user.sh'
+
+  # -- rbenv & ruby related --
+  config.vm.provision :shell, path: 'setup/rbenv.sh',            privileged: false
+  config.vm.provision :shell, path: 'setup/rbenv-first-ruby.sh', privileged: false
 
   # -- nodejs --
   config.vm.provision :shell, path: 'setup/nodejs.sh'
 
   # -- postgres --
   config.vm.provision :shell, path: 'setup/postgres_bootstrap.sh'
-
-  # -- rbenv & ruby related --
-  config.vm.provision :shell, path: 'setup/rbenv.sh',            privileged: false
-  config.vm.provision :shell, path: 'setup/rbenv-first-ruby.sh', privileged: false
 
   # -- rails --
   config.vm.provision :shell, path: 'setup/rails.sh',            privileged: false
