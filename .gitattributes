@@ -1,0 +1,11 @@
+# Vagrant linux vm, windows host
+#
+# .gitattributes
+#
+
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Shell scripts intended to run on the linux based VM
+# should always have LF line endings on checkuot.
+*.sh text eol=LF
