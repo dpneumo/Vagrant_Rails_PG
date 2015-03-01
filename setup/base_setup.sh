@@ -16,6 +16,8 @@ dir="/vagrant/setup"
 . "$dir/common_build_dependencies.sh"
 . "$dir/encodings.sh"
 
+. "$dir/app_user_as_linux_user.sh"
+
 echo ---
 echo base setup for vm is complete!
 echo ===================================
