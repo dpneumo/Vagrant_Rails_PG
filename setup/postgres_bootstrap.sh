@@ -55,44 +55,42 @@ then
   echo "To run system updates manually login via 'vagrant ssh' and run 'apt-get update && apt-get upgrade'"
   echo ""
   print_db_usage
-  exit
-fi
+else
+  pg_repo_apt_source=/etc/apt/sources.list.d/pgdg.list
+  if [ ! -f "$pg_repo_apt_source" ]
+  then
+    # Add PG apt repo:
+    echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > "$pg_repo_apt_source"
 
-pg_repo_apt_source=/etc/apt/sources.list.d/pgdg.list
-if [ ! -f "$pg_repo_apt_source" ]
-then
-  # Add PG apt repo:
-  echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > "$pg_repo_apt_source"
+    # Add PGDG repo key:
+    sudo wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+  fi
 
-  # Add PGDG repo key:
-  sudo wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
-fi
+  # Update package list and upgrade all packages
+  sudo apt-get update > /dev/null
+  sudo apt-get -y upgrade > /dev/null
 
-# Update package list and upgrade all packages
-sudo apt-get update > /dev/null
-sudo apt-get -y upgrade > /dev/null
+  sudo apt-get -y install "postgresql-$pg_version" "postgresql-contrib-$pg_version"
 
-sudo apt-get -y install "postgresql-$pg_version" "postgresql-contrib-$pg_version"
+  pg_conf="/etc/postgresql/$pg_version/main/postgresql.conf"
+  pg_hba="/etc/postgresql/$pg_version/main/pg_hba.conf"
+  pg_dir="/var/lib/postgresql/$pg_version/main"
 
-pg_conf="/etc/postgresql/$pg_version/main/postgresql.conf"
-pg_hba="/etc/postgresql/$pg_version/main/pg_hba.conf"
-pg_dir="/var/lib/postgresql/$pg_version/main"
+  # Edit postgresql.conf to change listen address to '*':
+  sudo sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" "$pg_conf"
 
-# Edit postgresql.conf to change listen address to '*':
-sudo sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" "$pg_conf"
+  # Append to pg_hba.conf to add password auth:
+  sudo echo "host    all             all             all                     md5" >> "$pg_hba"
 
-# Append to pg_hba.conf to add password auth:
-sudo echo "host    all             all             all                     md5" >> "$pg_hba"
+  # Explicitly set default client_encoding
+  sudo chmod 666 "$pg_conf"
+  sudo echo "client_encoding = utf8" >> "$pg_conf"
+  sudo chmod 644 "$pg_conf"
 
-# Explicitly set default client_encoding
-sudo chmod 666 "$pg_conf"
-sudo echo "client_encoding = utf8" >> "$pg_conf"
-sudo chmod 644 "$pg_conf"
+  # Restart so that all new config is loaded:
+  sudo service postgresql restart
 
-# Restart so that all new config is loaded:
-sudo service postgresql restart
-
-cat << EOF | sudo su - postgres -c psql
+  cat << EOF | sudo su - postgres -c psql
 -- Create the database user:
 CREATE USER $app_db_user WITH PASSWORD '$app_db_pass';
 ALTER ROLE $app_db_user CREATEROLE CREATEDB;
@@ -105,13 +103,13 @@ CREATE DATABASE $app_db_name WITH OWNER=$app_db_user
                                   TEMPLATE=template0;
 EOF
 
-# Tag the provision time:
-date > "$provisioned_on"
+  # Tag the provision time:
+  date > "$provisioned_on"
 
-echo "Successfully created PostgreSQL dev virtual machine."
-echo ---
-print_db_usage
-
+  echo "Successfully created PostgreSQL dev virtual machine."
+  echo ---
+  print_db_usage
+fi
 echo ---
 echo postgres installation is complete!
 echo ===================================

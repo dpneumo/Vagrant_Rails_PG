@@ -12,6 +12,8 @@ echo =
 echo ===================================
 
 dir="/vagrant/setup"
+
+# As user: root
 . "$dir/environmental_variables.sh"
 . "$dir/common_build_dependencies.sh"
 . "$dir/encodings.sh"
@@ -21,6 +23,10 @@ dir="/vagrant/setup"
 . "$dir/nodejs.sh"
 
 . "$dir/postgres_bootstrap.sh"
+
+# As user: vagrant
+sudo -u vagrant -i . "$dir/rbenv.sh"
+sudo -u vagrant -i . "$dir/rbenv-first-ruby.sh"
 
 echo ---
 echo base setup for vm is complete!
