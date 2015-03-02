@@ -18,6 +18,10 @@ dir="/vagrant/setup"
 
 . "$dir/app_user_as_linux_user.sh"
 
+. "$dir/nodejs.sh"
+
+. "$dir/postgres_bootstrap.sh"
+
 echo ---
 echo base setup for vm is complete!
 echo ===================================

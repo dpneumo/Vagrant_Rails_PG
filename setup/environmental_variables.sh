@@ -25,3 +25,5 @@ export DB=postgresql
 export PG_VERSION=9.3
 export DBYML=config/database.yml
 export ORIG_DBYML=config/database_orig.yml
+export DBUSER=ember_crm
+export DBPASS=Dragon123

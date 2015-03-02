@@ -12,9 +12,6 @@ Vagrant.configure('2') do |config|
   # -- base setup --
   config.vm.provision :shell, path: 'setup/base_setup.sh'
 
-  # -- APPUSER as linux user --
-  config.vm.provision :shell, path: 'setup/app_user_as_linux_user.sh'
-
   # -- nodejs --
   #config.vm.provision :shell, path: 'setup/nodejs.sh'
 
