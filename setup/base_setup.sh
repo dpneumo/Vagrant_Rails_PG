@@ -11,8 +11,11 @@ echo =   base setup for vm
 echo =
 echo ===================================
 
-dir="$PWD"
+dir="/vagrant/setup"
+
 . "$dir/environmental_variables.sh"
+mkdir -p $ROOT_PROV_DIR
+
 . "$dir/common_build_dependencies.sh"
 . "$dir/encodings.sh"
 
