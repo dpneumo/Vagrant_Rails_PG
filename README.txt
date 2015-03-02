@@ -42,7 +42,7 @@ before beginning to modify.
 2. This mechanism can be used to setup any environment repeatedly
 on the server of your choice. eg Python on a Centos box
 
-3. THis means you and others can be working on a project within
+3. This means you and others can be working on a project within
 base environments.
 
 4. The project folder is mirrored in the VM in the folder /vagrant.
@@ -57,4 +57,15 @@ This can be either in our offices or in the cloud.
 5. My immediate purpose for this setup is to create an environment that
 I can use to teach myself EmberJS. (http://emberjs.com/)
 
+6. I have told git in .gitattributes that files matching *.sh are to be
+cloned with LF End of Line markers. They are scripts that are to be
+executed in a linux environment. This should solve an unpleasant problem
+caused by the default git behavior that forced text files to have
+Windows style EOL markers, CRLF. These would not execute correctly
+in the linux vm.
 
+7. Vagrant executes shell scripts by copying them to a temporary folder
+on the VM. By default these execute with root privileges. The call to
+"config.vm.provision :shell" must be qualified with ", privileged: false"
+to run as the vagrant user. Environment variables set within the
+"config.vm.provision" call are cleared when that command completes.
