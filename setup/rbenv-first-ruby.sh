@@ -8,23 +8,18 @@
 echo =================================
 echo =
 echo =    Installing first ruby
-echo =         Ruby 2.2.0
+echo =     Ruby $RUBY_VERSION
 echo =
 echo =================================
 
-provisioned=/home/vagrant/provisions/ruby2.2.0
+provisioned=$PROVISIONS_DIR/$RUBY_FLAG
 if [ -f "$provisioned" ]
 then
   echo "first ruby has already been provisioned"
 else
-  # Environment Vars
-  export PATH="$HOME/.rbenv/bin:${PATH}"
-  export PATH="$HOME/.rbenv/shims:${PATH}"
-  export RBENV_SHELL=bash
-
-  # Install ruby version 2.2.0
-  rbenv install 2.2.0
-  rbenv global 2.2.0
+  # Install ruby version $RUBY_VERSION
+  rbenv install $RUBY_VERSION
+  rbenv global $RUBY_VERSION
 
   echo  Gems will install without local documentation
   echo "gem: --no-ri --no-rdoc" > ~/.gemrc
@@ -34,6 +29,6 @@ else
 fi
 
 echo ---
-echo ruby 2.2.0 has been installed!
-echo ruby 2.2.0 is the rbenv global ruby
+echo ruby $RUBY_VERSION has been installed!
+echo ruby $RUBY_VERSION is the rbenv global ruby
 echo ===================================

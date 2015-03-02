@@ -15,6 +15,7 @@ dir="/vagrant/setup"
 
 # As user: vagrant
 mkdir -p /home/vagrant/provisions
+. "$dir/environmental_vars_unpriv.sh"
 
 . "$dir/rbenv.sh"
 . "$dir/rbenv-first-ruby.sh"

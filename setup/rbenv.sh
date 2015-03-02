@@ -17,11 +17,6 @@ if [ -f "$provisioned" ]
 then
   echo "rbenv has already been provisioned"
 else
-  # Environment Vars
-  export PATH="$HOME/.rbenv/bin:${PATH}"
-  export PATH="$HOME/.rbenv/shims:${PATH}"
-  export RBENV_SHELL=bash
-
   # Install rbenv
   git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
   echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc

@@ -11,23 +11,11 @@ echo =       Begin New Rails App
 echo =
 echo ===================================
 
-provisioned=/home/vagrant/provisions/rails_app
+provisioned=$PROVISIONS_DIR/$RAILS_APP_FLAG
 if [ -f "$provisioned" ]
 then
   echo "rails_app has already been provisioned"
 else
-  # Environment Vars
-  export PATH="$HOME/.rbenv/bin:${PATH}"
-  export PATH="$HOME/.rbenv/shims:${PATH}"
-  export RBENV_SHELL=bash
-
-
-  # Application constants
-  MYAPP=ember-crm
-  DB=postgresql
-  DBYML=config/database.yml
-  ORIG_DBYML=config/database_orig.yml
-
   # Create new Rails app
   cd /vagrant
   if ! [ -d "$MYAPP" ]
@@ -46,23 +34,23 @@ else
 
   sudo cat - > "$DBYML" <<EOF
 default: &default
-  adapter: postgresql
+  adapter: $DB
   encoding: unicode
   host: localhost
   pool: 5
-  username: ember_crm
-  password: Dragon123
+  username: $DBUSER
+  password: $DBPASS
 development:
   <<: *default
-  database: ember-crm_development
+  database: $MYAPP_development
   min_messages: warning
 test:
   <<: *default
-  database: ember-crm_test
+  database: $MYAPP_test
 production:
   <<: *default
-  database: ember_crm_production
-  password: <%= ENV['EMBER-CRM_DATABASE_PASSWORD'] %>
+  database: $MYAPP_production
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
 EOF
   sudo chmod 644 "$DBYML"
 
@@ -78,6 +66,5 @@ EOF
   # Set provisioned flag
   touch $provisioned
 fi
-
 
 echo ===================================
