@@ -11,7 +11,7 @@ echo =       Begin New Rails App
 echo =
 echo ===================================
 
-provisioned=$PROVISIONS_DIR/$RAILS_APP_FLAG
+provisioned=$VAGRANT_PROV_DIR/$RAILS_APP_FLAG
 if [ -f "$provisioned" ]
 then
   echo "rails_app has already been provisioned"

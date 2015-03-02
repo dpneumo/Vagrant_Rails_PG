@@ -12,7 +12,7 @@ echo =     Ruby $RUBY_VERSION
 echo =
 echo =================================
 
-provisioned=$PROVISIONS_DIR/$RUBY_FLAG
+provisioned=$VAGRANT_PROV_DIR/$RUBY_FLAG
 if [ -f "$provisioned" ]
 then
   echo "first ruby has already been provisioned"

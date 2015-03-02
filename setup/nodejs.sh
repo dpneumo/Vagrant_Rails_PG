@@ -11,7 +11,7 @@ echo =       Installing nodejs
 echo =
 echo ===================================
 
-provisioned=$PROVISIONS_DIR/$NODEJS_FLAG
+provisioned=$ROOT_PROV_DIR/$NODEJS_FLAG
 if [ -f "$provisioned" ]
 then
   echo "nodejs has already been provisioned"

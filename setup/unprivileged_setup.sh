@@ -14,8 +14,8 @@ echo ===================================
 dir="/vagrant/setup"
 
 # As user: vagrant
-mkdir -p /home/vagrant/provisions
-. "$dir/environmental_vars_unpriv.sh"
+. "$dir/environmental_variables.sh"
+mkdir -p $VAGRANT_PROV_DIR
 
 . "$dir/rbenv.sh"
 . "$dir/rbenv-first-ruby.sh"

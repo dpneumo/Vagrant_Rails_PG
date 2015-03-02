@@ -12,7 +12,7 @@ echo =  Installing build dependencies
 echo =
 echo ===================================
 
-provisioned=$PROVISIONS_DIR/$CBD_FLAG
+provisioned=$ROOT_PROV_DIR/$CBD_FLAG
 if [ -f "$provisioned" ]
 then
   echo "common_build_dependencies has already been provisioned"

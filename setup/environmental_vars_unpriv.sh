@@ -13,7 +13,7 @@ echo =
 echo ===================================
 
 # Linux
-export PROVISIONS_DIR=/home/vagrant/provisions
+export VAGRANT_PROV_DIR=/home/vagrant/provisions
 export RUBY_FLAG=ruby2.2.0
 export RAILS_FLAG=rails
 export RAILS_APP_FLAG=rails_app

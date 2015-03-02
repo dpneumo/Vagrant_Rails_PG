@@ -12,7 +12,7 @@ echo =
 echo ===================================
 
 
-provisioned=/home/vagrant/provisions/rbenv
+provisioned=$VAGRANT_PROV_DIR/$RBENV_FLAG
 if [ -f "$provisioned" ]
 then
   echo "rbenv has already been provisioned"

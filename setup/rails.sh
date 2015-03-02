@@ -11,13 +11,13 @@ echo =       Installing rails
 echo =
 echo ===================================
 
-provisioned=$PROVISIONS_DIR/$RAILS_FLAG
+provisioned=$VAGRANT_PROV_DIR/$RAILS_FLAG
 if [ -f "$provisioned" ]
 then
   echo "rails has already been provisioned"
 else
   # Set ruby version
-  #rbenv local 2.2.0
+  #rbenv local $RUBY_VERSION
 
   # Rails
   echo  Installing rails
