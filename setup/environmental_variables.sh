@@ -14,6 +14,10 @@ echo ===================================
 
 # Linux
 export ENCODING=en_US.UTF-8
+export PROVISIONS_DIR=/etc/provisions
+export CBD_FLAG=common_build_deps
+export NODEJS_FLAG=nodejs
+export PG_FLAG=vm_provision_on_timestamp
 
 # Application
 export MYAPP=ember-crm

@@ -48,7 +48,7 @@ print_db_usage () {
 
 export DEBIAN_FRONTEND=noninteractive
 
-provisioned_on=/etc/vm_provision_on_timestamp
+provisioned_on=$PROVISIONS_DIR/$PG_FLAG
 if [ -f "$provisioned_on" ]
 then
   echo "VM was already provisioned at: $(cat $provisioned_on)"
