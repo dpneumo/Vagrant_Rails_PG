@@ -13,10 +13,10 @@ echo =
 echo ===================================
 
 # Create linux user unless already exists
-CHKUSER="$(sudo getent passwd ember_crm)"
-if ! [ -n "$CHKUSER" ]
+chkuser="$(sudo getent passwd $APPUSER)"
+if ! [ -n "$chkuser" ]
 then
-  sudo useradd -U -M -p Dragon123 ember_crm
+  sudo useradd -U -M -p $APPUSER_PW $APPUSER
 fi
 
 echo ---

@@ -12,14 +12,23 @@ echo =  Installing build dependencies
 echo =
 echo ===================================
 
-echo  Installing common build dependencies
+provisioned=$PROVISIONS_DIR/$CBD_FLAG
+if [ -f "$provisioned" ]
+then
+  echo "common_build_dependencies has already been provisioned"
+else
+  echo  Installing common build dependencies
 
-sudo apt-get update -y > /dev/null
-sudo apt-get install \
-       git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev \
-       libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties \
-       libpq-dev -y
-sudo apt-get autoremove -y
+  sudo apt-get update -y > /dev/null
+  sudo apt-get install \
+         git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev \
+         libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties \
+         libpq-dev -y
+  sudo apt-get autoremove -y
+
+  # Set provisioned flag
+  touch $provisioned
+fi
 
 echo ---
 echo build dependencies installation is complete!

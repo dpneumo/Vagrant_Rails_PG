@@ -7,14 +7,14 @@ echo =
 echo ===================================
 
 # Edit the following to change the name of the database user that will be created:
-APP_DB_USER=ember_crm
-APP_DB_PASS=Dragon123
+app_db_user=$DBUSER
+app_db_pass=$DBPASS
 
 # Edit the following to change the name of the database that is created (defaults to the user name)
-APP_DB_NAME=$APP_DB_USER
+app_db_name=$app_db_user
 
 # Edit the following to change the version of PostgreSQL that is installed
-PG_VERSION=9.3
+pg_version=$PG_VERSION
 
 ###########################################################
 # Changes below this line are probably not necessary
@@ -24,11 +24,11 @@ print_db_usage () {
   echo "It can be accessed on your local machine on the forwarded port (default: 15432)"
   echo "  Host: localhost"
   echo "  Port: 15432"
-  echo "  Database: $APP_DB_NAME"
+  echo "  Database: $app_db_name"
   echo ""
-  echo "This user can create DBs and roles. It created the $APP_DB_NAME DB:"
-  echo "  Username: $APP_DB_USER"
-  echo "  Password: $APP_DB_PASS"
+  echo "This user can create DBs and roles. It created the $app_db_name DB:"
+  echo "  Username: $app_db_user"
+  echo "  Password: $app_db_pass"
   echo ""
   echo "Admin access to postgres user via VM:"
   echo "  vagrant ssh"
@@ -37,81 +37,79 @@ print_db_usage () {
   echo "psql access to app database user via VM:"
   echo "  vagrant ssh"
   echo "  sudo su - postgres"
-  echo "  PGUSER=$APP_DB_USER PGPASSWORD=$APP_DB_PASS psql -h localhost $APP_DB_NAME"
+  echo "  PGUSER=$app_db_user PGPASSWORD=$app_db_pass psql -h localhost $app_db_name"
   echo ""
   echo "Env variable for application development:"
-  echo "  DATABASE_URL=postgresql://$APP_DB_USER:$APP_DB_PASS@localhost:15432/$APP_DB_NAME"
+  echo "  DATABASE_URL=postgresql://$app_db_user:$app_db_pass@localhost:15432/$app_db_name"
   echo ""
   echo "Local command to access the database via psql:"
-  echo "  PGUSER=$APP_DB_USER PGPASSWORD=$APP_DB_PASS psql -h localhost -p 15432 $APP_DB_NAME"
+  echo "  PGUSER=$app_db_user PGPASSWORD=$app_db_pass psql -h localhost -p 15432 $app_db_name"
 }
 
 export DEBIAN_FRONTEND=noninteractive
 
-PROVISIONED_ON=/etc/vm_provision_on_timestamp
-if [ -f "$PROVISIONED_ON" ]
+provisioned_on=$PROVISIONS_DIR/$PG_FLAG
+if [ -f "$provisioned_on" ]
 then
-  echo "VM was already provisioned at: $(cat $PROVISIONED_ON)"
+  echo "VM was already provisioned at: $(cat $provisioned_on)"
   echo "To run system updates manually login via 'vagrant ssh' and run 'apt-get update && apt-get upgrade'"
   echo ""
   print_db_usage
-  exit
-fi
+else
+  pg_repo_apt_source=/etc/apt/sources.list.d/pgdg.list
+  if [ ! -f "$pg_repo_apt_source" ]
+  then
+    # Add PG apt repo:
+    echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > "$pg_repo_apt_source"
 
-PG_REPO_APT_SOURCE=/etc/apt/sources.list.d/pgdg.list
-if [ ! -f "$PG_REPO_APT_SOURCE" ]
-then
-  # Add PG apt repo:
-  echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > "$PG_REPO_APT_SOURCE"
+    # Add PGDG repo key:
+    sudo wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+  fi
 
-  # Add PGDG repo key:
-  sudo wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
-fi
+  # Update package list and upgrade all packages
+  sudo apt-get update > /dev/null
+  sudo apt-get -y upgrade > /dev/null
 
-# Update package list and upgrade all packages
-sudo apt-get update > /dev/null
-sudo apt-get -y upgrade > /dev/null
+  sudo apt-get -y install "postgresql-$pg_version" "postgresql-contrib-$pg_version"
 
-sudo apt-get -y install "postgresql-$PG_VERSION" "postgresql-contrib-$PG_VERSION"
+  pg_conf="/etc/postgresql/$pg_version/main/postgresql.conf"
+  pg_hba="/etc/postgresql/$pg_version/main/pg_hba.conf"
+  pg_dir="/var/lib/postgresql/$pg_version/main"
 
-PG_CONF="/etc/postgresql/$PG_VERSION/main/postgresql.conf"
-PG_HBA="/etc/postgresql/$PG_VERSION/main/pg_hba.conf"
-PG_DIR="/var/lib/postgresql/$PG_VERSION/main"
+  # Edit postgresql.conf to change listen address to '*':
+  sudo sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" "$pg_conf"
 
-# Edit postgresql.conf to change listen address to '*':
-sudo sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" "$PG_CONF"
+  # Append to pg_hba.conf to add password auth:
+  sudo echo "host    all             all             all                     md5" >> "$pg_hba"
 
-# Append to pg_hba.conf to add password auth:
-sudo echo "host    all             all             all                     md5" >> "$PG_HBA"
+  # Explicitly set default client_encoding
+  sudo chmod 666 "$pg_conf"
+  sudo echo "client_encoding = utf8" >> "$pg_conf"
+  sudo chmod 644 "$pg_conf"
 
-# Explicitly set default client_encoding
-sudo chmod 666 "$PG_CONF"
-sudo echo "client_encoding = utf8" >> "$PG_CONF"
-sudo chmod 644 "$PG_CONF"
+  # Restart so that all new config is loaded:
+  sudo service postgresql restart
 
-# Restart so that all new config is loaded:
-sudo service postgresql restart
-
-cat << EOF | sudo su - postgres -c psql
+  cat << EOF | sudo su - postgres -c psql
 -- Create the database user:
-CREATE USER $APP_DB_USER WITH PASSWORD '$APP_DB_PASS';
-ALTER ROLE $APP_DB_USER CREATEROLE CREATEDB;
+CREATE USER $app_db_user WITH PASSWORD '$app_db_pass';
+ALTER ROLE $app_db_user CREATEROLE CREATEDB;
 
 -- Create the database:
-CREATE DATABASE $APP_DB_NAME WITH OWNER=$APP_DB_USER
+CREATE DATABASE $app_db_name WITH OWNER=$app_db_user
                                   LC_COLLATE='en_US.utf8'
                                   LC_CTYPE='en_US.utf8'
                                   ENCODING='UTF8'
                                   TEMPLATE=template0;
 EOF
 
-# Tag the provision time:
-date > "$PROVISIONED_ON"
+  # Tag the provision time:
+  date > "$provisioned_on"
 
-echo "Successfully created PostgreSQL dev virtual machine."
-echo ---
-print_db_usage
-
+  echo "Successfully created PostgreSQL dev virtual machine."
+  echo ---
+  print_db_usage
+fi
 echo ---
 echo postgres installation is complete!
 echo ===================================
