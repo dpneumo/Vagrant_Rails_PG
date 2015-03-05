@@ -15,5 +15,5 @@ Vagrant.configure('2') do |config|
   config.vm.provision :shell, path: 'setup/base_setup.sh'
 
   # -- unprivileged setup --
-  config.vm.provision :shell, path: 'setup/unprivileged_setup.sh'
+  #config.vm.provision :shell, path: 'setup/unprivileged_setup.sh'
 end
