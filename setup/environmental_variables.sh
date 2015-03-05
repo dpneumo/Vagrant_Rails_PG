@@ -14,16 +14,7 @@ echo ===================================
 export ENCODING=en_US.UTF-8
 
 export ROOT_PROV_DIR=/etc/provisions
-export CBD_FLAG=common_build_dependencies
-export NODEJS_FLAG=nodejs
-export PG_FLAG=vm_provision_on_timestamp
-
 export VAGRANT_PROV_DIR=/home/vagrant/provisions
-export RBENV_FLAG=rbenv
-export RUBY_FLAG=ruby2.2.0
-export RAILYARD_FLAG=railyard
-export RAILS_FLAG=rails
-export RAILS_APP_FLAG=rails_app
 
 # Postgresql
 export PG_VERSION=9.3

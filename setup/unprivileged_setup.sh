@@ -8,20 +8,20 @@
 echo ===================================
 echo =
 echo =   unprivileged setup for vm
-echo =
+echo =   run as user: vagrant
 echo ===================================
 
-dir="/vagrant/setup"
+script_dir="/vagrant/setup"
 
-# As user: vagrant
-. "$dir/environmental_variables.sh"
+. "$script_dir/functions.sh"
+. "$script_dir/environmental_variables.sh"
+
 mkdir -p $VAGRANT_PROV_DIR
 
-. "$dir/rbenv.sh"
-. "$dir/rbenv-first-ruby.sh"
-
-. "$dir/rails.sh"
-. "$dir/rails_app.sh"
+provision_1x rbenv
+#provision_1x rbenv-first-ruby
+#provision_1x rails
+#provision_1x rails_app
 
 echo ---
 echo base setup for vm is complete!

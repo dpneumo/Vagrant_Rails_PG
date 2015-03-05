@@ -12,7 +12,6 @@ echo =   run as user: root
 echo ===================================
 
 script_dir="/vagrant/setup"
-flag_dir="/etc/provisions"
 
 . "$script_dir/functions.sh"
 . "$script_dir/environmental_variables.sh"
