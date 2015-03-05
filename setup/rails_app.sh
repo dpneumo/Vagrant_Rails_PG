@@ -29,23 +29,27 @@ fi
 
 sudo cat - > "$DBYML" <<EOF
 default: &default
-adapter: :$DB
-encoding: unicode
-host: localhost
-pool: 5
-username: $DBUSER
-password: $DBPASS
+  adapter: $DB
+  encoding: unicode
+  host: localhost
+  pool: 5
+  username: $DBUSER
+  password: $DBPASS
+
 development:
-<<: *default
-database: $MYAPP_development
-min_messages: warning
+  <<: *default
+  database: ${MYAPP}_development
+  min_messages: warning
+
 test:
-<<: *default
-database: $MYAPP_test
+  <<: *default
+  database: ${MYAPP}_test
+  min_messages: warning
+
 production:
-<<: *default
-database: $MYAPP_production
-password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  <<: *default
+  database: ${MYAPP}_production
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
 EOF
 sudo chmod 644 "$DBYML"
 
