@@ -4,11 +4,7 @@
 #
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
-echo ===================================
-echo =
-echo =   set environmental variables
-echo =
-echo ===================================
+echo => setting environmental variables
 
 # Linux
 export ENCODING=en_US.UTF-8

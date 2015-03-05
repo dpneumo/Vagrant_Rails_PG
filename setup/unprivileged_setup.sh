@@ -19,7 +19,7 @@ script_dir="/vagrant/setup"
 mkdir -p $VAGRANT_PROV_DIR
 
 provision_1x rbenv
-#provision_1x rbenv-first-ruby
+provision_1x rbenv-first-ruby
 #provision_1x rails
 #provision_1x rails_app
 

@@ -12,21 +12,12 @@ echo =     Ruby $RUBY_VERSION
 echo =
 echo =================================
 
-provisioned=$VAGRANT_PROV_DIR/$RUBY_FLAG
-if [ -f "$provisioned" ]
-then
-  echo "first ruby has already been provisioned"
-else
-  # Install ruby version $RUBY_VERSION
-  rbenv install $RUBY_VERSION
-  rbenv global $RUBY_VERSION
+# Install ruby version $RUBY_VERSION
+rbenv install $RUBY_VERSION
+rbenv global $RUBY_VERSION
 
-  echo  Gems will install without local documentation
-  echo "gem: --no-ri --no-rdoc" > ~/.gemrc
-
-  # Set provisioned flag
-  touch $provisioned
-fi
+echo  Gems will install without local documentation
+echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 
 echo ---
 echo ruby $RUBY_VERSION has been installed!
