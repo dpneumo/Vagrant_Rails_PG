@@ -14,11 +14,12 @@ echo ===================================
 
 script_dir="/vagrant/setup"
 
-. "$script_dir/functions.sh"
 . "$script_dir/environmental_variables.sh"
+flag_dir=$ROOT_PROV_DIR
+mkdir -p $flag_dir
+echo $flag_dir
 
-mkdir -p $ROOT_PROV_DIR
-
+. "$script_dir/functions.sh"
 provision_1x common_build_dependencies
 provision_1x encodings
 provision_1x app_user_as_linux_user

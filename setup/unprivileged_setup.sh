@@ -14,11 +14,12 @@ echo ===================================
 
 script_dir="/vagrant/setup"
 
-. "$script_dir/functions.sh"
 . "$script_dir/environmental_variables.sh"
+flag_dir=$VAGRANT_PROV_DIR
+mkdir -p $flag_dir
+echo $flag_dir
 
-mkdir -p $VAGRANT_PROV_DIR
-
+. "$script_dir/functions.sh"
 provision_1x rbenv
 provision_1x rbenv-first-ruby
 provision_1x rails
