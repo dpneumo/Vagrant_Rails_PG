@@ -29,7 +29,7 @@ fi
 
 sudo cat - > "$DBYML" <<EOF
 default: &default
-adapter: $DB
+adapter: :$DB
 encoding: unicode
 host: localhost
 pool: 5

@@ -11,19 +11,8 @@ echo =       Installing rails
 echo =
 echo ===================================
 
-provisioned=$VAGRANT_PROV_DIR/$RAILS_FLAG
-if [ -f "$provisioned" ]
-then
-  echo "rails has already been provisioned"
-else
-  # Rails
-  echo  Installing rails
-  gem install rails
-  rbenv rehash
-
-  # Set provisioned flag
-  touch $provisioned
-fi
+gem install rails
+rbenv rehash
 
 echo ---
 echo rails installation is complete!
