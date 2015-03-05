@@ -17,7 +17,6 @@ script_dir="/vagrant/setup"
 . "$script_dir/environmental_variables.sh"
 flag_dir=$VAGRANT_PROV_DIR
 mkdir -p $flag_dir
-echo $flag_dir
 
 . "$script_dir/functions.sh"
 provision_1x rbenv

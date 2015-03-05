@@ -13,11 +13,6 @@ echo =
 echo =  https://github.com/brandonweiss/railyard
 echo ===================================
 
-provisioned=$VAGRANT_PROV_DIR/$RAILYARD_FLAG
-if [ -f "$provisioned" ]
-then
-  echo "rails has already been provisioned"
-else
   # Railyard
   gem install railyard
   rbenv rehash
@@ -25,10 +20,6 @@ else
   # Rails
   echo  Installing rails skeleton
   railyard version $RAILS_VERSION
-
-  # Set provisioned flag
-  touch $provisioned
-fi
 
 echo ---
 echo rails installation is complete!

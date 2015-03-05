@@ -14,15 +14,21 @@ Within the project folder run this command at a command prompt:
 
   It takes ~ 2 min to have the base linux VM running
 
-  Running the setup scripts adds ~ 30 min
+  Running the setup scripts adds ~ 20 - 30 min
 
 When the setup is completed you will have:
   a running Ubuntu\trusty32 VM
   a linux development environment
   nodejs, ruby, rails and postgresql installed
-  a running rails server with a minimal rails app backing it
+  a runnable rails server with a minimal rails app setup
+
+To run the app use vagrant ssh to get into the box.
+  Authentication is via key pairs.
+  You are logged in as vagrant user.
+  cd to /vagrant/<app name> and do "rails s -b 0.0.0.0"
 
 On the host open a browser to http://localhost:3000
+  You should see the Rails "Welcome aboard" index page.
 
 Back in the host command prompt you are in an ssh session on the VM
   shut down the rails server with <CTRL>-c
@@ -31,7 +37,13 @@ Back in the host command prompt you are in an ssh session on the VM
 
   you can restart with "vagrant up"
   The provisioning with the shell scripts will not be repeated.
-  Caution: The scripts at this time are NOT idempotent.
+
+  Caution: To run a shell script a second time with
+  "vagrant provision" or "vagrant up --provision" you will
+  have to remove the associated lock file from "/etc/provisions"
+  for scripts that run with root privileges or
+  from "/home/vagrant/provisions" for scripts running with
+  vagrant privileges.
 
 
 Note:
