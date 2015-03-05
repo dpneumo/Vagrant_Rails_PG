@@ -26,5 +26,5 @@ provision_1x rails
 provision_1x rails_app
 
 echo ---
-echo base setup for vm is complete!
+echo unprivileged setup for vm is complete!
 echo ===================================
