@@ -24,13 +24,3 @@ function provision_1x () {
     touch $provisioned
   fi
 }
-
-function provision_once() {
-  provisioned=$1/$2_flag
-  if [ -f "$provisioned" ]
-  then
-    echo "$2 has already been provisioned"
-  else
-    provision
-  fi
-}

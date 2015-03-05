@@ -11,25 +11,15 @@ echo =       Installing nodejs
 echo =
 echo ===================================
 
-provisioned=$ROOT_PROV_DIR/$NODEJS_FLAG
-if [ -f "$provisioned" ]
-then
-  echo "nodejs has already been provisioned"
-else
-  # NodeJS
-  echo  Adding node ppa with apt-add-repository via software-properties-common
-  sudo apt-get install software-properties-common -y
-  sudo add-apt-repository ppa:chris-lea/node.js -y
+echo  Adding node ppa with apt-add-repository via software-properties-common
+sudo apt-get install software-properties-common -y
+sudo add-apt-repository ppa:chris-lea/node.js -y
 
-  echo  Updating apt-get after repository addition
-  sudo apt-get update -y > /dev/null
+echo  Updating apt-get after repository addition
+sudo apt-get update -y > /dev/null
 
-  echo  Installing nodejs
-  sudo apt-get install nodejs -y
-
-  # Set provisioned flag
-  touch $provisioned
-fi
+echo  Installing nodejs
+sudo apt-get install nodejs -y
 
 echo ---
 echo nodejs installation is complete!
