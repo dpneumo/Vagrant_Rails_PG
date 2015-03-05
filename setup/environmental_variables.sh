@@ -14,7 +14,7 @@ echo ===================================
 export ENCODING=en_US.UTF-8
 
 export ROOT_PROV_DIR=/etc/provisions
-export CBD_FLAG=common_build_deps
+export CBD_FLAG=common_build_dependencies
 export NODEJS_FLAG=nodejs
 export PG_FLAG=vm_provision_on_timestamp
 
@@ -37,6 +37,9 @@ export RBENV_SHELL=bash
 
 # ruby
 export RUBY_VERSION=2.2.0
+
+# rails
+export RAILS_VERSION=4.2.0
 
 # Application
 export MYAPP=ember-crm

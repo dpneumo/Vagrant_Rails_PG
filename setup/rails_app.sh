@@ -61,7 +61,7 @@ EOF
   rake db:create
 
   # Start rails server
-  rails server -b 0.0.0.0
+  #rails server -b 0.0.0.0
 
   # Set provisioned flag
   touch $provisioned

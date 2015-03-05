@@ -13,7 +13,7 @@ echo =
 echo =  https://github.com/brandonweiss/railyard
 echo ===================================
 
-provisioned=$VAGRANT_PROV_DIR/$RAILS_FLAG
+provisioned=$VAGRANT_PROV_DIR/$RAILYARD_FLAG
 if [ -f "$provisioned" ]
 then
   echo "rails has already been provisioned"
@@ -24,7 +24,7 @@ else
 
   # Rails
   echo  Installing rails skeleton
-  railyard version 4.2.0
+  railyard version $RAILS_VERSION
 
   # Set provisioned flag
   touch $provisioned

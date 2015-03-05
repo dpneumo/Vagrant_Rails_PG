@@ -12,11 +12,11 @@ echo =  Installing build dependencies
 echo =
 echo ===================================
 
-provisioned=$ROOT_PROV_DIR/$CBD_FLAG
-if [ -f "$provisioned" ]
-then
-  echo "common_build_dependencies has already been provisioned"
-else
+#provisioned=$ROOT_PROV_DIR/$CBD_FLAG
+#if [ -f "$provisioned" ]
+#then
+#  echo "common_build_dependencies has already been provisioned"
+#else
   echo  Installing common build dependencies
 
   sudo apt-get update -y > /dev/null
@@ -26,9 +26,9 @@ else
          libpq-dev -y
   sudo apt-get autoremove -y
 
-  # Set provisioned flag
-  touch $provisioned
-fi
+#  # Set provisioned flag
+#  touch $provisioned
+#fi
 
 echo ---
 echo build dependencies installation is complete!
