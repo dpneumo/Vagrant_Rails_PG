@@ -9,6 +9,7 @@ echo ===================================
 echo =
 echo =   base setup for vm
 echo =   run as user: root
+echo =
 echo ===================================
 
 script_dir="/vagrant/setup"
