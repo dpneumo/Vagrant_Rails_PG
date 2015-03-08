@@ -12,7 +12,7 @@ echo =            based on
 echo = http://ember.vicramon.com/hello-world
 echo ===================================
 
-cd /vagrant/ember-crm
+cd /vagrant/$MYAPP
 
 # Remove turbolinks from Gemfile:
 # Replace lines containing '[Tt]urbolinks' with blank line,
@@ -68,6 +68,7 @@ class HomeController < ApplicationController
 end
 EOF
 
+mkdir app/views/home
 sudo cat - > "app/views/home/index.html.erb" <<EOF
 <!-- app/views/home/index.html.erb -->
 EOF
