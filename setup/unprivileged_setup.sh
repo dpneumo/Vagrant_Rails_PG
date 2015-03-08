@@ -12,9 +12,9 @@ echo =   run as user: vagrant
 echo =
 echo ===================================
 
-script_dir="/vagrant/setup"
+script_dir="/vagrant/setup/unprivileged"
 
-. "$script_dir/environmental_variables.sh"
+. "$script_dir/../environmental_variables.sh"
 flag_dir=$VAGRANT_PROV_DIR
 mkdir -p $flag_dir
 
