@@ -18,7 +18,7 @@ script_dir="/vagrant/setup/unprivileged"
 flag_dir=$VAGRANT_PROV_DIR
 mkdir -p $flag_dir
 
-. "$script_dir/functions.sh"
+. "$script_dir/../functions.sh"
 provision_1x rbenv
 provision_1x rbenv-first-ruby
 provision_1x rails
