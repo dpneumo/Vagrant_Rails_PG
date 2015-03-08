@@ -11,21 +11,19 @@ echo =       Begin New Rails App
 echo =
 echo ===================================
 
-# Create new Rails app
 cd /vagrant
-if ! [ -d "$MYAPP" ]
-then
-  rails new "$MYAPP" -d "$DB"
-fi
 
+# Remove earlier version of MYAPP if it exists
+if [ -d "$MYAPP" ]; then sudo rm -Rf "$MYAPP"; fi
+
+# Create new Rails app
+rails new "$MYAPP" -d "$DB"
 cd "$MYAPP"
 
 # Setup database.yml for Postgresql
 sudo chmod 666 "$DBYML"
-if [ ! -f "$ORIG_DBYML" ]
-then
-  sudo mv "$DBYML" "$ORIG_DBYML"
-fi
+
+if [ ! -f "$ORIG_DBYML" ]; then sudo mv "$DBYML" "$ORIG_DBYML"; fi
 
 sudo cat - > "$DBYML" <<EOF
 default: &default
