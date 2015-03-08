@@ -23,7 +23,7 @@ provision_1x rbenv
 provision_1x rbenv-first-ruby
 provision_1x rails
 provision_1x rails_app
-provision_1x emberjs
+#sprovision_1x emberjs
 
 echo ---
 echo unprivileged setup for vm is complete!
