@@ -17,11 +17,10 @@ cd /vagrant/ember-crm
 # Remove turbolinks from Gemfile:
 # Replace lines containing '[Tt]urbolinks' with blank line,
 # then remove comments and blank lines from Gemfile
-sudo sed -i 's/[Tt]urbolinks//' Gemfile
-sudo sed -i -e 's/#.*//' -e 's/[ ^I]*$//' -e '/^$/ d' Gemfile
+sudo sed -i '/[Tt]urbolinks/ d' Gemfile
 
 # Remove turbolinks from Layout
-# ???
+sudo sed -i "s/, 'data-turbolinks-track' => true//" app/views/layouts/application.html.erb
 
 # Append ember gems to Gemfile
 sudo cat - >> "Gemfile" <<EOF
@@ -40,19 +39,19 @@ rails g ember:install --tag=v1.0.0-beta.7 --ember-data
 #Add to config/environments/test.rb
 sudo sed -i'
 /configure do/ a\
-config.ember.variant = :development
+  config.ember.variant = :development\
 ' config/environments/test.rb
 
 # Add to config/environments/development.rb
 sudo sed -i'
 /configure do/ a\
-config.ember.variant = :development
+  config.ember.variant = :development\
 ' config/environments/development.rb
 
 #Add to config/environments/production.rb
 sudo sed -i'
 /configure do/ a\
-config.ember.variant = :production
+  config.ember.variant = :production\
 ' config/environments/production.rb
 
 # Delete app/assets/javascripts/application.js
