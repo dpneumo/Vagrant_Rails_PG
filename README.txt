@@ -22,6 +22,9 @@ When the setup is completed you will have:
   nodejs, ruby, rails and postgresql installed
   a runnable rails server with a minimal rails app setup
 
+  3/8/2015: Have added the http://ember.vicramon.com/hello-world
+  ember setup in emberjs.sh
+
 To run the app use vagrant ssh to get into the box.
   Authentication is via key pairs.
   You are logged in as vagrant user.
