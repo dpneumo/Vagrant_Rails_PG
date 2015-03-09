@@ -79,6 +79,12 @@ h1 Hello World
 outlet
 EOF
 
+# This was not created by the Ember Rails generate command as expected
+sudo cat - > "app/assets/javascripts/store.js.coffee" <<EOF
+App.Store = DS.Store.extend()
+App.ApplicationAdapter = DS.ActiveModelAdapter.extend()
+EOF
+
 echo ---
 echo emberjs installation is complete!
 echo ===================================
