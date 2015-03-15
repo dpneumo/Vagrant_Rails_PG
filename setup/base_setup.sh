@@ -23,6 +23,7 @@ mkdir -p $flag_dir
 
 . "$script_dir/../functions.sh"
 provision_1x common_build_dependencies
+provision_1x git_config
 provision_1x encodings
 provision_1x app_user_as_linux_user
 #provision_1x nodejs
