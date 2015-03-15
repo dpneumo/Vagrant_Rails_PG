@@ -10,7 +10,6 @@
 #     a script dir: eg. script_dir="/vagrant/setup"
 #     a flag dir:   eg. flag_dir="/etc/provisions"
 #
-
 function provision_1x () {
   resource_name=$1
   provisioned=$flag_dir/$resource_name

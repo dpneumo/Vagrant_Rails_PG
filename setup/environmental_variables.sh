@@ -6,11 +6,16 @@
 #
 echo "++ setting environmental variables ++"
 
+# Clean PATH
+# http://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command
+PATH=$(echo -n $PATH | awk -vRS=: -vORS= '!a[$0]++ {if (NR>1) printf(":"); printf("%s", $0) }' )
+
 # Linux
 export ENCODING=en_US.UTF-8
 
-export ROOT_PROV_DIR=/etc/provisions
-export VAGRANT_PROV_DIR=/home/vagrant/provisions
+export ROOT_PROVISIONED_FLAGS_DIR=/etc/provisioned
+export USER_PROVISIONED_FLAGS_DIR=/home/$USER/provisioned
+export SYNCED_FLDR=/vagrant
 
 # Postgresql
 export PG_VERSION=9.3
@@ -29,8 +34,9 @@ export RUBY_VERSION=2.2.0
 export RAILS_VERSION=4.2.0
 
 # Application
-export MYAPP=ember-crm
-export APPUSER=$MYAPP
+export MY_RAILS_APP=ember-crm
+export MY_EMBER_APP=releases
+export APPUSER=$MY_RAILS_APP
 export APPUSER_PW=Dragon123
 export DB=postgresql
 export DBYML=config/database.yml

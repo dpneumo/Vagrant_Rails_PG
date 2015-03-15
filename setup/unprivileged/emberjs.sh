@@ -12,7 +12,7 @@ echo =            based on
 echo = http://ember.vicramon.com/hello-world
 echo ===================================
 
-cd /vagrant/$MYAPP
+cd /vagrant/$MY_RAILS_APP
 
 # Remove turbolinks from Gemfile:
 # Replace lines containing '[Tt]urbolinks' with blank line,

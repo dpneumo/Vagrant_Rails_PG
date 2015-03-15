@@ -6,8 +6,9 @@
 Vagrant.configure('2') do |config|
   config.vm.box = 'ubuntu/trusty32'
 
-  config.vm.network :forwarded_port, guest: 3000, host: 3000
+  config.vm.network :forwarded_port, guest: 3000, host: 3000  # rails server
   config.vm.network :forwarded_port, guest: 5432, host: 15432 # postgres
+  config.vm.network :forwarded_port, guest: 4200, host: 4200  # ember server
 
   #config.vm.synced_folder 'postgres_bootstrap', '/mnt/bootstrap', '.', :create => true
 

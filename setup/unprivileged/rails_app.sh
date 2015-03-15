@@ -13,12 +13,12 @@ echo ===================================
 
 cd /vagrant
 
-# Remove earlier version of MYAPP if it exists
-if [ -d "$MYAPP" ]; then sudo rm -Rf "$MYAPP"; fi
+# Remove earlier version of $MY_RAILS_APP if it exists
+if [ -d "$MY_RAILS_APP" ]; then sudo rm -Rf "$MY_RAILS_APP"; fi
 
 # Create new Rails app
-rails new "$MYAPP" -d "$DB"
-cd "$MYAPP"
+rails new "$MY_RAILS_APP" -d "$DB"
+cd "$MY_RAILS_APP"
 
 # Setup database.yml for Postgresql
 sudo chmod 666 "$DBYML"
@@ -36,18 +36,18 @@ default: &default
 
 development:
   <<: *default
-  database: ${MYAPP}_development
+  database: ${MY_RAILS_APP}_development
   min_messages: warning
 
 test:
   <<: *default
-  database: ${MYAPP}_test
+  database: ${MY_RAILS_APP}_test
   min_messages: warning
 
 production:
   <<: *default
-  database: ${MYAPP}_production
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  database: ${MY_RAILS_APP}_production
+  password: <%= ENV['MY_RAILS_APP_DATABASE_PASSWORD'] %>
 EOF
 sudo chmod 644 "$DBYML"
 
