@@ -3,7 +3,7 @@
 echo ===================================
 echo =
 echo =       Installing postgres
-echo =
+echo =          $(timestamp)
 echo ===================================
 
 # Edit the following to change the name of the database user that will be created:

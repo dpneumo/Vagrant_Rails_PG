@@ -8,7 +8,7 @@
 echo =================================
 echo =
 echo =       Git Configuration
-echo =
+echo =          $(timestamp)
 echo =================================
 
 

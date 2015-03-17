@@ -5,11 +5,10 @@
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
 
-echo
 echo ===================================
 echo =
 echo =        setting encodings
-echo =
+echo =          $(timestamp)
 echo ===================================
 
 sudo locale-gen en_US.UTF-8

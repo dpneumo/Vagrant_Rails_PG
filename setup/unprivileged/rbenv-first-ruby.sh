@@ -9,7 +9,7 @@ echo =================================
 echo =
 echo =    Installing first ruby
 echo =     Ruby $RUBY_VERSION
-echo =
+echo =          $(timestamp)
 echo =================================
 
 # Install ruby version $RUBY_VERSION

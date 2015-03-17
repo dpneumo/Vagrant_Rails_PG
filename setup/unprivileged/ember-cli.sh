@@ -6,7 +6,7 @@
 #
 echo ===================================
 echo =     Installing ember-cli
-echo =
+echo =          $(timestamp)
 echo ===================================
 
 npm install -g ember-cli

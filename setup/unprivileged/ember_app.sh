@@ -6,7 +6,7 @@
 #
 echo ===================================
 echo =     Setting up My Ember App
-echo =
+echo =          $(timestamp)
 echo ===================================
 # Based on:
 # http://space-pope.github.io/vagrant/ember/ember-cli/2014/06/02/ember-npm-and-vagrant/
@@ -26,23 +26,31 @@ echo ===================================
 # Comment: 1. This is is a serious kludge!
 #          2. There ought to be a way to automate this.
 
-mkdir -p /home/$USER/projects
-cd /home/$USER/projects
-ember new $MY_EMBER_APP >> /dev/null
-rsync -a --exclude node_modules /home/$USER/projects/$MY_EMBER_APP /$SYNCED_FLDR
+cd ~/srv
 
+# Remove earlier version of the ember app if it exists
+if [ -d ember ]; then sudo rm -Rf ember; fi
 
-mkdir -p /home/$USER/bin
-sudo cat - >> "/home/$USER/.profile" <<EOF
-export PATH=/home/$USER/bin:$PATH
-EOF
+# Create new Ember app in srv folder
+ember new myember --skip-git
+mv myember ember
+# Copy it to myproj folder excluding node_modules
+rsync -a --exclude node_modules ~/srv/ember ~/projects/myproj/
 
-source /home/$USER/.profile
+# Create script to sync & update sync folder with build/serve folder
+cat - > ~/scripts/build_ember.sh <<EOF
+#!/bin/bash
+# ~/scripts/build_ember.sh
 
-cat - > "/home/$USER/bin/build_ember.sh" <<EOF
-rsync -a --progress --exclude dist --exclude tmp /$SYNCED_FLDR/ /home/$USER/projects/$MY_EMBER_APP/
-cd /home/$USER/projects/$MY_EMBER_APP
+# sync & update sync folder with build/serve folder
+
+rsync -a --exclude .git \~/projects/myproj/ember/ \~/srv/ember/
+cd \~/srv/ember
 bower install
 ember build
-rsync -a --progress --exclude node_modules /home/$USER/projects/ /$SYNCED_FLDR/
+rsync -a --exclude node_modules --exclude .git \~/srv/ember/ \~/projects/myproj/ember/
 EOF
+
+echo ---
+echo ember_app is complete!
+echo ===================================

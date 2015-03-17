@@ -1,13 +1,13 @@
 #!/bin/bash
 #
-# unprivileged_setup.sh
+# setup_project.sh
 #
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
 
 echo ===================================
 echo =
-echo =   unprivileged setup for vm
+echo =   setup project
 echo =   run as user: vagrant
 echo =
 echo ===================================
@@ -24,17 +24,13 @@ mkdir -p $flag_dir
 
 . "$script_dir/../functions.sh"
 
-provision_1x rbenv
-provision_1x rbenv-first-ruby
-provision_1x rails
+mkdir -p ~/projects/myproj
 
-provision_1x nodejs-v0.12
-provision_1x ember-cli
-
-provision_1x projects_support
+provision_1x rails_app
+provision_1x ember_app
 
 . $script_dir/cleanup.sh
 
 echo ---
-echo unprivileged setup for vm is complete!
+echo setup project is complete!
 echo ===================================

@@ -8,7 +8,7 @@
 echo ===================================
 echo =
 echo =       Installing rails
-echo =
+echo =         $(timestamp)
 echo ===================================
 
 gem install rails

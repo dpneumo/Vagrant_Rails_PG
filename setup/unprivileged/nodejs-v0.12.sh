@@ -8,6 +8,7 @@
 echo ===================================
 echo =     Installing Node.js v0.12
 echo =  Debian and Ubuntu based distros
+echo =          $(timestamp)
 echo ===================================
 # Based on:
 # https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories
@@ -33,10 +34,15 @@ sudo chown -R $USER ~/.npm/_locks
 mkdir -p ~/npm-global
 npm config set prefix '~/npm-global'
 
-sudo cat - >> "/home/$USER/.profile" <<EOF
-export PATH=/home/$USER/npm-global/bin:$PATH
-EOF
+if ! grep '# Add npm-global/bin' ~/.profile ; then
+  cat - >> ~/.profile <<EOF
 
+# Add npm-global/bin to PATH if not yet included
+if ! [[ \$PATH =~ (^|:)"\~/npm-global/bin"(:|$) ]]; then
+    export PATH=\~/npm-global/bin:\$PATH
+fi
+EOF
+fi
 source ~/.profile
 
 # install global tools

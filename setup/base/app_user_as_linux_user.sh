@@ -5,11 +5,10 @@
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
 
-echo
 echo ===================================
 echo =
 echo =   set app user as linux user
-echo =
+echo =          $(timestamp)
 echo ===================================
 
 # Create linux user unless already exists

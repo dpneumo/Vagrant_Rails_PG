@@ -23,3 +23,10 @@ function provision_1x () {
     touch $provisioned
   fi
 }
+
+
+# Define a timestamp function
+timestamp() {
+  date +"%T"
+}
+

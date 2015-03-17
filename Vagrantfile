@@ -10,11 +10,20 @@ Vagrant.configure('2') do |config|
   config.vm.network :forwarded_port, guest: 5432, host: 15432 # postgres
   config.vm.network :forwarded_port, guest: 4200, host: 4200  # ember server
 
-  #config.vm.synced_folder 'postgres_bootstrap', '/mnt/bootstrap', '.', :create => true
+  # Setup the synched project folder. Permissions have to be set here.
+  # http://jeremykendall.net/2013/08/09/vagrant-synced-folders-permissions/
+  host_fldr =  'C:/Users/loco/My Projects'
+  guest_fldr = '/home/vagrant/projects'
+  config.vm.synced_folder host_fldr, guest_fldr,
+                          create: true,
+                          mount_options: ["dmode=775,fmode=664"]
 
   # -- base setup --
   config.vm.provision :shell, path: 'setup/base_setup.sh'
 
   # -- unprivileged setup --
   config.vm.provision :shell, path: 'setup/unprivileged_setup.sh', privileged: false
+
+  # -- setup project --
+  config.vm.provision :shell, path: 'setup/setup_project.sh', privileged: false
 end

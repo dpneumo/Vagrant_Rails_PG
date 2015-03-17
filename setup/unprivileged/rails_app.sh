@@ -8,17 +8,21 @@
 echo ===================================
 echo =
 echo =       Begin New Rails App
-echo =
+echo =          $(timestamp)
 echo ===================================
 
-cd /vagrant
+cd ~/projects
+mkdir -p myproj
+cd myproj
 
-# Remove earlier version of $MY_RAILS_APP if it exists
-if [ -d "$MY_RAILS_APP" ]; then sudo rm -Rf "$MY_RAILS_APP"; fi
+echo $(pwd)
+# Remove earlier version of the rails app if it exists
+if [ -d rails ]; then sudo rm -Rf rails; fi
 
 # Create new Rails app
-rails new "$MY_RAILS_APP" -d "$DB"
-cd "$MY_RAILS_APP"
+rails new myrails -B -S -d "$DB"
+mv myrails rails
+cd rails
 
 # Setup database.yml for Postgresql
 sudo chmod 666 "$DBYML"

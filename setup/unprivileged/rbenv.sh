@@ -8,13 +8,30 @@
 echo ===================================
 echo =
 echo =         Installing rbenv
-echo =
+echo =          $(timestamp)
 echo ===================================
 
 # Install rbenv
 git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+
+# Add rbenv paths to .profile
+if ! grep '# Add rbenv paths' ~/.profile ; then
+  cat - >> ~/.profile <<EOF
+
+# Add rbenv paths to PATH if not yet included
+if ! [[ \$PATH =~ (^|:)"\~/.rbenv/bin"(:|$) ]]; then
+    export PATH=\~/.rbenv/bin:\$PATH
+fi
+
+if ! [[ \$PATH =~ (^|:)"\~/.rbenv/shims"(:|$) ]]; then
+    export PATH=\~/.rbenv/shims:\$PATH
+fi
+EOF
+fi
+source ~/.profile
+
+# Add rbenv init code to .profile
+echo 'eval "$(rbenv init -)"' >> ~/.profile
 
 # Init rbenv
 source '/home/vagrant/.rbenv/libexec/../completions/rbenv.bash'

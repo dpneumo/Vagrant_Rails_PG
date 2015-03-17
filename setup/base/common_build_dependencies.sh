@@ -5,11 +5,10 @@
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
 
-echo
 echo ===================================
 echo =
 echo =  Installing build dependencies
-echo =
+echo =          $(timestamp)
 echo ===================================
 
 sudo apt-get update -y > /dev/null
