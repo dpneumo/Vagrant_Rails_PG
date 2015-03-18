@@ -11,9 +11,7 @@ echo =       Begin New Rails App
 echo =          $(timestamp)
 echo ===================================
 
-cd ~/projects
-mkdir -p myproj
-cd myproj
+cd ~/projects/myproj
 
 # Remove earlier version of the rails app if it exists
 if [ -d rails ]; then sudo rm -Rf rails; fi

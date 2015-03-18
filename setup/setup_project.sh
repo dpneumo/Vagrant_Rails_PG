@@ -25,6 +25,7 @@ mkdir -p $flag_dir
 . "$script_dir/../functions.sh"
 
 mkdir -p ~/projects/myproj
+mkdir -p ~/srv/myproj
 
 provision_1x rails_app
 provision_1x ember_app

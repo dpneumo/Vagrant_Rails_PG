@@ -14,7 +14,7 @@ echo ===================================
 
 # $script_dir is required by provision_1x
 # Cannot be set by environmental_variables.sh
-script_dir="/vagrant/setup/base"
+script_dir="/vagrant/setup/base_root"
 
 . "$script_dir/../environmental_variables.sh"
 
