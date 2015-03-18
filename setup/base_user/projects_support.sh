@@ -11,7 +11,7 @@ echo =          $(timestamp)
 echo ===================================
 
 # Cannot be set by environmental_variables.sh
-script_dir="/vagrant/setup/unprivileged"
+script_dir="/vagrant/setup/base_user"
 
 . "$script_dir/../environmental_variables.sh"
 
