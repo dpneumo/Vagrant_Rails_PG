@@ -19,10 +19,10 @@ Vagrant.configure('2') do |config|
                           mount_options: ["dmode=775,fmode=664"]
 
   # -- base setup --
-  config.vm.provision :shell, path: 'setup/base_setup.sh'
+  config.vm.provision :shell, path: 'setup/setup_base_root.sh'
 
   # -- unprivileged setup --
-  config.vm.provision :shell, path: 'setup/unprivileged_setup.sh', privileged: false
+  config.vm.provision :shell, path: 'setup/setup_base_user.sh', privileged: false
 
   # -- setup project --
   config.vm.provision :shell, path: 'setup/setup_project.sh', privileged: false
