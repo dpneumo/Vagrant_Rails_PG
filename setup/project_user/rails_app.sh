@@ -15,7 +15,6 @@ cd ~/projects
 mkdir -p myproj
 cd myproj
 
-echo $(pwd)
 # Remove earlier version of the rails app if it exists
 if [ -d rails ]; then sudo rm -Rf rails; fi
 

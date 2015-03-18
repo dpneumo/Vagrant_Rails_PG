@@ -2,12 +2,10 @@ install VirtualBox: https://www.virtualbox.org/wiki/Downloads
 
 Install Vagrant: http://www.vagrantup.com/downloads.html
 
-Create a project folder: eg "ember-crm" and cd into it
+Create a folder for the VM: eg "C:\Users\loco\My Projects\ProjectVM" and cd into it
 
-Copy the attached files into the project folder
-  Vagrantfile goes directly into the project folder
-  Create a "setup" folder
-    Copy the sh files into "setup"
+git clone https://github.com/dpneumo/Vagrant_Rails_PG.git
+to clone the repository into your current directory
 
 Within the project folder run this command at a command prompt:
   Vagrant up
@@ -25,10 +23,16 @@ When the setup is completed you will have:
   3/8/2015: Have added the http://ember.vicramon.com/hello-world
   ember setup in emberjs.sh
 
+  3/17/2015: For St Pat's day have shifted to support for ember-cli.
+  Please read the comments in setup/project_user/ember_app.sh
+
 To run the app use vagrant ssh to get into the box.
   Authentication is via key pairs.
   You are logged in as vagrant user.
-  cd to /vagrant/<app name> and do "rails s -b 0.0.0.0"
+  To run a Rails only app, you can run from ~/projects/myproj
+  cd to ~/projects/myproj/rails and do "rails s -b 0.0.0.0"
+
+  A project that includes ember-cli should run from ~/srv/projects/myproj
 
 On the host open a browser to http://localhost:3000
   You should see the Rails "Welcome aboard" index page.

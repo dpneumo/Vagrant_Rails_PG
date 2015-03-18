@@ -1,13 +1,13 @@
 #!/bin/bash
 #
-# base_setup.sh
+# setup_base_root.sh
 #
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
 
 echo ===================================
 echo =
-echo =   base setup for vm
+echo =   privileged setup for vm
 echo =   run as user: root
 echo =
 echo ===================================
@@ -32,5 +32,5 @@ provision_1x postgres_bootstrap
 . $script_dir/cleanup.sh
 
 echo ---
-echo base setup for vm is complete!
+echo privileged setup for vm is complete!
 echo ===================================

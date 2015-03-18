@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# unprivileged_setup.sh
+# setup_base_user.sh
 #
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
@@ -14,7 +14,7 @@ echo ===================================
 
 # $script_dir is required by provision_1x
 # Cannot be set by environmental_variables.sh
-script_dir="/vagrant/setup/unprivileged"
+script_dir="/vagrant/setup/base_user"
 
 . "$script_dir/../environmental_variables.sh"
 
