@@ -23,7 +23,7 @@ mkdir -p ~/scripts
 
 # Add ~/scripts to PATH
 if ! grep '# Add scripts' ~/.profile ; then
-  cat - >> "~/.profile" <<EOF
+  cat - >> ~/.profile <<EOF
 
 # Add scripts to PATH if not yet included
 if ! [[ \$PATH =~ (^|:)"\~/scripts"(:|$) ]]; then
