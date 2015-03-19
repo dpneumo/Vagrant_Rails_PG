@@ -16,6 +16,8 @@ echo =================================
 rbenv install $RUBY_VERSION
 rbenv global $RUBY_VERSION
 
+gem update --system
+
 echo  Gems will install without local documentation
 echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 
