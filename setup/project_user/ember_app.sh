@@ -29,7 +29,7 @@ echo ===================================
 # Comment: 1. This is is a serious kludge!
 #          2. There ought to be a way to automate this.
 
-cd ~/srv/myproj
+cd $APP_BUILD_FLDR/$MY_APP
 
 # Remove earlier version of the ember app if it exists
 if [ -d ember ]; then sudo rm -Rf ember; fi
@@ -38,7 +38,7 @@ if [ -d ember ]; then sudo rm -Rf ember; fi
 ember new myember --skip-git
 mv myember ember
 # Copy it to myproj folder excluding node_modules
-rsync -a --exclude node_modules ~/srv/myproj/ ~/projects/myproj/
+rsync -a --exclude node_modules $APP_BUILD_FLDR/$MY_APP $SYNCED_APPS_FLDR/$MY_APP/
 
 echo ---
 echo ember_app is complete!

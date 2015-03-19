@@ -29,7 +29,7 @@ provision_1x encodings
 provision_1x app_user_as_linux_user
 provision_1x postgres_bootstrap
 
-. $script_dir/cleanup.sh
+. $script_dir/../cleanup.sh
 
 echo ---
 echo privileged setup for vm is complete!

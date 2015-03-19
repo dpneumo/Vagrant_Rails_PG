@@ -33,7 +33,7 @@ provision_1x ember-cli
 
 provision_1x projects_support
 
-. $script_dir/cleanup.sh
+. $script_dir/../cleanup.sh
 
 echo ---
 echo unprivileged setup for vm is complete!

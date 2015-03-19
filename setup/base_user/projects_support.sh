@@ -15,7 +15,7 @@ script_dir="/vagrant/setup/base_user"
 
 . "$script_dir/../environmental_variables.sh"
 
-# ~/projects was built by Vagrantfile
+# ~/projects was built by Vagrantfile in synched project folder setup
 sudo chown -R vagrant:vagrant ~/projects
 
 mkdir -p $APP_BUILD_FLDR        # ~/srv

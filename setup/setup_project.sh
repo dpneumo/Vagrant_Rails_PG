@@ -31,7 +31,7 @@ provision_1x rails_app
 provision_1x ember_app
 provision_1x myproj
 
-. $script_dir/cleanup.sh
+. $script_dir/../cleanup.sh
 
 echo ---
 echo setup project is complete!

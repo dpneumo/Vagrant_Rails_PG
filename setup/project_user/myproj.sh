@@ -16,11 +16,11 @@ cat - > ~/scripts/build_proj.sh <<EOF
 
 # sync & update sync folder with build/serve folder
 
-rsync -a --exclude .git \~/projects/myproj/ \~/srv/myproj/
-cd \~/srv/myproj/ember
+rsync -a --exclude .git $SYNCED_APPS_FLDR/$MY_APP/ $APP_BUILD_FLDR/$MY_APP/
+cd $APP_BUILD_FLDR/$MY_APP/ember
 bower install
 ember build
-rsync -a --exclude node_modules --exclude .git \~/srv/myproj/ \~/projects/myproj/
+rsync -a --exclude node_modules --exclude .git $APP_BUILD_FLDR/$MY_APP/ $SYNCED_APPS_FLDR/$MY_APP/
 EOF
 
 echo ---

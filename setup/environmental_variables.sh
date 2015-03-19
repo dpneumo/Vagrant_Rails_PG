@@ -38,7 +38,7 @@ export RAILS_VERSION=4.2.0
 # Application
 export MY_RAILS_APP=ember-crm
 export MY_EMBER_APP=releases
-export MY_APP=my_app
+export MY_APP=myproj
 export SYNCED_APPS_FLDR=~/projects
 export APP_BUILD_FLDR=~/srv
 
