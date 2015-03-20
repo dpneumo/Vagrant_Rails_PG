@@ -38,7 +38,7 @@ if [ -d ember ]; then sudo rm -Rf ember; fi
 ember new myember --skip-git
 mv myember ember
 # Copy it to myproj folder excluding node_modules
-rsync -a --exclude node_modules $APP_BUILD_FLDR/$MY_APP $SYNCED_APPS_FLDR/$MY_APP/
+rsync -a --exclude node_modules $APP_BUILD_FLDR/$MY_APP $SYNCED_APPS_FLDR/
 
 echo ---
 echo ember_app is complete!
