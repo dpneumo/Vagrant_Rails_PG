@@ -2,6 +2,7 @@ Symlink creation on Win7
   Requires Pro
   User should not be an administrator to avoid UAC query for each attempt to create a symlink
   As an administrator run secpol.msc
+    Local Policy => User Rights Assignment
     Give the user CreateSymbolicLink priv and save
   User must login after the priv has ben set to pick up the priv.
   At cmd prompt running whoami /priv will show privleges the user has.
