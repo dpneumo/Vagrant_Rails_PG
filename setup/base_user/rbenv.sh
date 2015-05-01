@@ -4,15 +4,11 @@
 #
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
-
-echo ===================================
-echo =
-echo =         Installing rbenv
-echo =          $(timestamp)
-echo ===================================
+starting "Install rbenv"
 
 # Install rbenv
-git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+git clone https://github.com/sstephenson/rbenv.git ~/.rbenv |
+  tee -a /var/log/vagrant_setup.log
 
 # Add rbenv paths to .profile
 if ! grep '# Add rbenv paths' ~/.profile ; then
@@ -35,22 +31,25 @@ echo 'eval "$(rbenv init -)"' >> ~/.profile
 
 # Init rbenv
 source '/home/vagrant/.rbenv/libexec/../completions/rbenv.bash'
-rbenv rehash 2>/dev/null
+rbenv rehash  |
+  tee -a /var/log/vagrant_setup.log | 2>/dev/null
 
 # Plugins directory
 mkdir -p ~/.rbenv/plugins
 cd ~/.rbenv/plugins
-echo '------ rbenv plugins ------'
+echo '------ rbenv plugins ------' |
+  tee -a /var/log/vagrant_setup.log
 
 # Install ruby-build
-git clone https://github.com/sstephenson/ruby-build.git
+git clone https://github.com/sstephenson/ruby-build.git |
+  tee -a /var/log/vagrant_setup.log
 
 # Install rbenv-vars
-git clone https://github.com/sstephenson/rbenv-vars.git
+git clone https://github.com/sstephenson/rbenv-vars.git |
+  tee -a /var/log/vagrant_setup.log
 
 # Install rbenv-gemset
-git clone git://github.com/jf/rbenv-gemset.git
+git clone git://github.com/jf/rbenv-gemset.git |
+  tee -a /var/log/vagrant_setup.log
 
-echo ---
-echo rbenv installation is complete!
-echo ===================================
+completed "rbenv installation"

@@ -26,6 +26,9 @@ When the setup is completed you will have:
   3/17/2015: For St Pat's day have shifted to support for ember-cli.
   Please read the comments in setup/project_user/ember_app.sh
 
+  4/29/2015: Output of the setupscripts is written to /var/log/vagrant_setup.log
+  in the newly created vm. This logging is not yet complete but should help.
+
 To run the app use vagrant ssh to get into the box.
   Authentication is via key pairs.
   You are logged in as vagrant user.

@@ -5,11 +5,8 @@
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
 
-echo ===================================
-echo =     Installing Node.js v0.12
-echo =  Debian and Ubuntu based distros
-echo =          $(timestamp)
-echo ===================================
+starting " Install Node.js v0.12 (Debian/Ubuntu)"
+
 # Based on:
 # https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories
 # https://docs.npmjs.com/getting-started/installing-node
@@ -19,20 +16,24 @@ echo ===================================
 curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
 
 # Then install with:
-sudo apt-get install -y nodejs
+sudo apt-get install -y nodejs |
+  tee -a /var/log/vagrant_setup.log
 
 # Update npm
-sudo npm install npm -g
+sudo npm install npm -g |
+  tee -a /var/log/vagrant_setup.log
 
 # fixing-npm-permissions
 # locks
-sudo chown -R $USER ~/.npm/_locks
+sudo chown -R $USER ~/.npm/_locks |
+  tee -a /var/log/vagrant_setup.log
 
 # npm config get prefix returns /usr rather than /usr/local for v0.12
 # so placing global packages in ~/npm-global seems better choice
 # npm-global will be owned by $USER this way
 mkdir -p ~/npm-global
-npm config set prefix '~/npm-global'
+npm config set prefix '~/npm-global' |
+  tee -a /var/log/vagrant_setup.log
 
 if ! grep '# Add npm-global/bin' ~/.profile ; then
   cat - >> ~/.profile <<EOF
@@ -46,9 +47,9 @@ fi
 source ~/.profile
 
 # install global tools
-npm install -g jshint
-npm install -g bower
+npm install -g jshint |
+  tee -a /var/log/vagrant_setup.log
+npm install -g bower |
+  tee -a /var/log/vagrant_setup.log
 
-echo ---
-echo nodejs installation is complete!
-echo ===================================
+completed "nodejs installation"

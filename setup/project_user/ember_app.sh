@@ -4,10 +4,8 @@
 #
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
-echo ===================================
-echo =     Setting up My Ember App
-echo =          $(timestamp)
-echo ===================================
+starting "Setup My Ember App"
+
 # Based on:
 # http://space-pope.github.io/vagrant/ember/ember-cli/2014/06/02/ember-npm-and-vagrant/
 
@@ -40,6 +38,4 @@ mv myember ember
 # Copy it to myproj folder excluding node_modules
 rsync -a --exclude node_modules $APP_BUILD_FLDR/$MY_APP $SYNCED_APPS_FLDR/
 
-echo ---
-echo ember_app is complete!
-echo ===================================
+completed "ember app setup"

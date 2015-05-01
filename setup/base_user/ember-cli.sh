@@ -4,13 +4,9 @@
 #
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
-echo ===================================
-echo =     Installing ember-cli
-echo =          $(timestamp)
-echo ===================================
+starting " Install ember-cli"
 
-npm install -g ember-cli
+npm install -g ember-cli |
+  tee -a /var/log/vagrant_setup.log
 
-echo ---
-echo ember-cli installation is complete!
-echo ===================================
+completed "ember-cli installation"

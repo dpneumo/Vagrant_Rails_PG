@@ -4,16 +4,11 @@
 #
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
+starting "Install rails"
 
-echo ===================================
-echo =
-echo =       Installing rails
-echo =         $(timestamp)
-echo ===================================
+gem install rails |
+  tee -a /var/log/vagrant_setup.log
+rbenv rehash |
+  tee -a /var/log/vagrant_setup.log
 
-gem install rails
-rbenv rehash
-
-echo ---
-echo rails installation is complete!
-echo ===================================
+completed "rails installation"

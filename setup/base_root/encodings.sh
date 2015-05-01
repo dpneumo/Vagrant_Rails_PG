@@ -5,11 +5,7 @@
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
 
-echo ===================================
-echo =
-echo =        setting encodings
-echo =          $(timestamp)
-echo ===================================
+starting "Setup encodings"
 
 sudo locale-gen en_US.UTF-8
 
@@ -33,6 +29,4 @@ LC_ALL=en_US.UTF-8
 EOF
 sudo chmod 644 /etc/default/locale
 
-echo ---
-echo setting encodings is complete!
-echo ===================================
+completed "setting encodings"

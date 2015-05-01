@@ -1,10 +1,6 @@
 #!/bin/bash
 
-echo ===================================
-echo =
-echo =       Installing postgres
-echo =          $(timestamp)
-echo ===================================
+starting "Install PostgreSQL"
 
 # Edit the following to change the name of the database user that will be created:
 app_db_user=$DBUSER
@@ -97,6 +93,7 @@ CREATE DATABASE $app_db_name WITH OWNER=$app_db_user
                                   TEMPLATE=template0;
 EOF
 
-echo "Successfully created PostgreSQL dev virtual machine."
-echo ---
-print_db_usage
+print_db_usage |
+  tee -a /var/log/vagrant_setup.log
+
+completed "PostgreSQL installation"

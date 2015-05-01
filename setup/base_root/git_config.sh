@@ -5,15 +5,11 @@
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
 
-echo =================================
-echo =
-echo =       Git Configuration
-echo =          $(timestamp)
-echo =================================
-
+starting "Git configuration"
 
 # Install git
-sudo apt-get install git
+sudo apt-get install git |
+  tee -a /var/log/vagrant_setup.log
 
 # Configure git
 git config --global color.ui true
@@ -25,6 +21,4 @@ git config --global user.email "dpneumo@gmail.com"
 # paste the output of the cat to:
 # https://github.com/settings/ssh
 
-echo ---
-echo git has been configured!
-echo ===================================
+completed "git configuration"

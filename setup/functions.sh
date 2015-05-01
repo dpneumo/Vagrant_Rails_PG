@@ -15,7 +15,8 @@ function provision_1x () {
   provisioned=$flag_dir/$resource_name
   if [ -f "$provisioned" ]
   then
-    echo "$resource_name has already been provisioned"
+    echo "$resource_name has already been provisioned" |
+      tee -a /var/log/vagrant_setup.log
   else
     . "$script_dir/$resource_name.sh"
 
@@ -25,8 +26,31 @@ function provision_1x () {
 }
 
 
+# setup-script header
+# Usage: starting "task description"
+function starting () {
+  task=$1
+  echo "
+===================================
+=    $1
+=    $(timestamp)
+===================================
+" | tee -a /var/log/vagrant_setup.log
+}
+
+# setup-script footer
+# Usage: completed "task description"
+function completed () {
+  task=$1
+  echo "
+---
+$task is complete!
+===================================
+" | tee -a /var/log/vagrant_setup.log
+}
+
+
 # Define a timestamp function
 timestamp() {
   date +"%T"
 }
-

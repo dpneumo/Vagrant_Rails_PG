@@ -5,19 +5,14 @@
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
 
-echo ===================================
-echo =
-echo =   set app user as linux user
-echo =          $(timestamp)
-echo ===================================
+starting "set app user as linux user"
 
 # Create linux user unless already exists
 chkuser="$(sudo getent passwd $APPUSER)"
 if ! [ -n "$chkuser" ]
 then
-  sudo useradd -U -M -p $APPUSER_PW $APPUSER
+  sudo useradd -U -M -p $APPUSER_PW $APPUSER |
+    tee -a /var/log/vagrant_setup.log
 fi
 
-echo ---
-echo setting app user as linux user is complete!
-echo ===================================
+completed "setting app user as linux user"

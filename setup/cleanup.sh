@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
-echo "++ Clean up ++"
+echo "++ Clean up ++" | tee -a /var/log/vagrant_setup.log
 
 # Clean PATH
 # http://unix.stackexchange.com/questions/40749/remove-duplicate-path-entries-with-awk-command

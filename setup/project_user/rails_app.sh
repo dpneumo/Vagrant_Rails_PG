@@ -4,12 +4,7 @@
 #
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
-
-echo ===================================
-echo =
-echo =       Begin New Rails App
-echo =          $(timestamp)
-echo ===================================
+starting " Begin New Rails App"
 
 cd $SYNCED_APPS_FLDR/$MY_APP
 
@@ -17,7 +12,7 @@ cd $SYNCED_APPS_FLDR/$MY_APP
 if [ -d rails ]; then sudo rm -Rf rails; fi
 
 # Create new Rails app
-rails new myrails -B -S -d "$DB"
+rails new myrails -B -S -d "$DB" | tee -a /var/log/vagrant_setup.log
 mv myrails rails
 cd rails
 
@@ -53,12 +48,12 @@ EOF
 sudo chmod 644 "$DBYML"
 
 # Assure all required Gems are installed
-bundle install
+bundle install | tee -a /var/log/vagrant_setup.log
 
 # Create DB (Once only)
-rake db:create
+rake db:create | tee -a /var/log/vagrant_setup.log
 
 # Start rails server
 #rails server -b 0.0.0.0
 
-echo ===================================
+completed "rails app setup"

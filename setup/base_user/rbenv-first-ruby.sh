@@ -4,24 +4,18 @@
 #
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
-
-echo =================================
-echo =
-echo =    Installing first ruby
-echo =     Ruby $RUBY_VERSION
-echo =          $(timestamp)
-echo =================================
+starting "Install first ruby, Ruby $RUBY_VERSION"
 
 # Install ruby version $RUBY_VERSION
-rbenv install $RUBY_VERSION
-rbenv global $RUBY_VERSION
+rbenv install $RUBY_VERSION |
+  tee -a /var/log/vagrant_setup.log
+rbenv global $RUBY_VERSION |
+  tee -a /var/log/vagrant_setup.log
 
-gem update --system
+gem update --system |
+  tee -a /var/log/vagrant_setup.log
 
 echo  Gems will install without local documentation
 echo "gem: --no-ri --no-rdoc" > ~/.gemrc
 
-echo ---
-echo ruby $RUBY_VERSION has been installed!
-echo ruby $RUBY_VERSION is the rbenv global ruby
-echo ===================================
+completed "ruby $RUBY_VERSION installation"

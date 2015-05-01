@@ -14,6 +14,17 @@ Vagrant.configure('2') do |config|
   # http://jeremykendall.net/2013/08/09/vagrant-synced-folders-permissions/
   host_fldr =  'C:/Users/loco/My Projects'
   guest_fldr = '/home/vagrant/projects'
+
+  # https://www.virtualbox.org/ticket/10085
+  # https://github.com/npm/npm/issues/7308 @drmyersii
+  # See Vagrantfile_notes.txt for details & Win7 requirements to make this work
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["setextradata",
+                 :id,
+                 "VBoxInternal2/SharedFoldersEnableSymlinksCreate/guest_fldr",
+                 "1"]
+  end
+
   config.vm.synced_folder host_fldr, guest_fldr,
                           create: true,
                           mount_options: ["dmode=775,fmode=664"]

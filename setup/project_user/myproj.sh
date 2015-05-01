@@ -4,10 +4,7 @@
 #
 # Copyright (C) 2015 Mitchell C Kuppinger, MD
 #
-echo ===================================
-echo =     Setting up My Project
-echo =          $(timestamp)
-echo ===================================
+starting "Setup My Project"
 
 # Create script to sync & update sync folder with build/serve folder
 cat - > ~/scripts/build_proj.sh <<EOF
@@ -26,6 +23,4 @@ EOF
 chmod +x ~/scripts/build_proj.sh
 echo "alias build_proj='~/scripts/build_proj.sh'" >> ~/.bashrc
 
-echo ---
-echo My Project setup is complete!
-echo ===================================
+completed "My Project setup"
