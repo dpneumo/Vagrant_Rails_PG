@@ -12,7 +12,8 @@ Vagrant.configure('2') do |config|
 
   # Setup the synched project folder. Permissions have to be set here.
   # http://jeremykendall.net/2013/08/09/vagrant-synced-folders-permissions/
-  host_fldr =  'C:/Users/loco/My Projects'
+  win_user = ENV['USERNAME']
+  host_fldr =  "C:/Users/#{win_user}/My Projects"
   guest_fldr = '/home/vagrant/projects'
 
   # https://www.virtualbox.org/ticket/10085
@@ -21,11 +22,12 @@ Vagrant.configure('2') do |config|
   config.vm.provider "virtualbox" do |v|
     v.customize ["setextradata",
                  :id,
-                 "VBoxInternal2/SharedFoldersEnableSymlinksCreate/guest_fldr",
+                 "VBoxInternal2/SharedFoldersEnableSymlinksCreate/home/vagrant/projects",
                  "1"]
   end
 
-  config.vm.synced_folder host_fldr, guest_fldr,
+  config.vm.synced_folder "C:/Users/#{win_user}/My Projects",
+                          "/home/vagrant/projects",
                           create: true,
                           mount_options: ["dmode=775,fmode=664"]
 
@@ -36,5 +38,5 @@ Vagrant.configure('2') do |config|
   config.vm.provision :shell, path: 'setup/setup_base_user.sh', privileged: false
 
   # -- setup project --
-  config.vm.provision :shell, path: 'setup/setup_project.sh', privileged: false
+  #config.vm.provision :shell, path: 'setup/setup_project.sh', privileged: false
 end

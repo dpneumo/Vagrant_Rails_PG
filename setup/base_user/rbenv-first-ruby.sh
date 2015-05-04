@@ -7,13 +7,10 @@
 starting "Install first ruby, Ruby $RUBY_VERSION"
 
 # Install ruby version $RUBY_VERSION
-rbenv install $RUBY_VERSION |
-  tee -a /var/log/vagrant_setup.log
-rbenv global $RUBY_VERSION |
-  tee -a /var/log/vagrant_setup.log
+rbenv install $RUBY_VERSION
+rbenv global $RUBY_VERSION
 
-gem update --system |
-  tee -a /var/log/vagrant_setup.log
+gem update --system
 
 echo  Gems will install without local documentation
 echo "gem: --no-ri --no-rdoc" > ~/.gemrc

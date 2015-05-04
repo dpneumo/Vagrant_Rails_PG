@@ -25,7 +25,7 @@ provision_1x rails
 provision_1x nodejs-v0.12
 provision_1x ember-cli
 
-provision_1x projects_support
+#provision_1x projects_support
 
 . $script_dir/../cleanup.sh
 

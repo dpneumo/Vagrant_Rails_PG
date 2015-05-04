@@ -6,9 +6,7 @@
 #
 starting "Install rails"
 
-gem install rails |
-  tee -a /var/log/vagrant_setup.log
-rbenv rehash |
-  tee -a /var/log/vagrant_setup.log
+gem install rails
+rbenv rehash
 
 completed "rails installation"

@@ -93,7 +93,6 @@ CREATE DATABASE $app_db_name WITH OWNER=$app_db_user
                                   TEMPLATE=template0;
 EOF
 
-print_db_usage |
-  tee -a /var/log/vagrant_setup.log
+print_db_usage
 
 completed "PostgreSQL installation"

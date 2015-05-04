@@ -11,8 +11,7 @@ starting "set app user as linux user"
 chkuser="$(sudo getent passwd $APPUSER)"
 if ! [ -n "$chkuser" ]
 then
-  sudo useradd -U -M -p $APPUSER_PW $APPUSER |
-    tee -a /var/log/vagrant_setup.log
+  sudo useradd -U -M -p $APPUSER_PW $APPUSER
 fi
 
 completed "setting app user as linux user"

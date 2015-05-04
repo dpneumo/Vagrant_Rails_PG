@@ -7,18 +7,15 @@
 
 starting "Install common build dependencies"
 
-sudo apt-get update -y |
-  tee -a /var/log/vagrant_setup.log > /dev/null
+sudo apt-get update -y
 
 sudo apt-get install \
        git-core curl zlib1g-dev build-essential \
        libssl-dev libreadline-dev libyaml-dev \
        libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev \
        libcurl4-openssl-dev python-software-properties \
-       libpq-dev -y |
-  tee -a /var/log/vagrant_setup.log
+       libpq-dev -y 
 
-sudo apt-get autoremove -y |
-  tee -a /var/log/vagrant_setup.log
+sudo apt-get autoremove -y 
 
 completed "common build dependencies installation"

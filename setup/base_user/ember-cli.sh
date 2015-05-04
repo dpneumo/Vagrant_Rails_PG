@@ -6,7 +6,6 @@
 #
 starting " Install ember-cli"
 
-npm install -g ember-cli |
-  tee -a /var/log/vagrant_setup.log
+npm install -g ember-cli
 
 completed "ember-cli installation"

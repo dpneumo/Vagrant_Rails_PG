@@ -12,7 +12,7 @@ cd $SYNCED_APPS_FLDR/$MY_APP
 if [ -d rails ]; then sudo rm -Rf rails; fi
 
 # Create new Rails app
-rails new myrails -B -S -d "$DB" | tee -a /var/log/vagrant_setup.log
+rails new myrails -B -S -d "$DB"
 mv myrails rails
 cd rails
 
@@ -45,10 +45,11 @@ production:
   database: ${MY_RAILS_APP}_production
   password: <%= ENV['MY_RAILS_APP_DATABASE_PASSWORD'] %>
 EOF
+
 sudo chmod 644 "$DBYML"
 
-# Assure all required Gems are installed
-bundle install | tee -a /var/log/vagrant_setup.log
+# Ensure all required Gems are installed
+bundle install
 
 # Create DB (Once only)
 rake db:create | tee -a /var/log/vagrant_setup.log

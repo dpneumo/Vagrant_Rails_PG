@@ -8,8 +8,7 @@
 starting "Git configuration"
 
 # Install git
-sudo apt-get install git |
-  tee -a /var/log/vagrant_setup.log
+sudo apt-get install git
 
 # Configure git
 git config --global color.ui true
