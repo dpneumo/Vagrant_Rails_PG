@@ -17,11 +17,9 @@ function provision_1x () {
   then
     echo "$resource_name has already been provisioned"
   else
-    . "$script_dir/$resource_name.sh"
-
-    # Set provisioned flag
+    source "$script_dir/$resource_name.sh"
     touch $provisioned
-  fi 2>&1 | tee -a /var/log/vagrant_setup.log
+  fi | tee -a /var/log/vagrant_setup.log
 }
 
 

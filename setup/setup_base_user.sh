@@ -20,10 +20,10 @@ mkdir -p $flag_dir
 
 provision_1x rbenv
 provision_1x rbenv-first-ruby
-provision_1x rails
+#provision_1x rails
 
-provision_1x nodejs-v0.12
-provision_1x ember-cli
+#provision_1x nodejs-v0.12
+#provision_1x ember-cli
 
 #provision_1x projects_support
 
