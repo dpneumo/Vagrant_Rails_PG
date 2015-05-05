@@ -29,6 +29,8 @@ When the setup is completed you will have:
   4/29/2015: Output of the setupscripts is written to /var/log/vagrant_setup.log
   in the newly created vm. This logging is not yet complete but should help.
 
+  5/5/2015: Moved to running this as a non privileged windows user. Soft links are supposed to work for such a user without interference from UAC. (See Vagrantfile for addl info.) Multiple problems getting this to flow through all scripts without failure. Had problems sourcing ~/.profile after additions. Current setup works from scratch to end as a single episode. Have not yet tried it with the scripts run in a series of steps as might be required if only part of the setup was initially required and subsequently other provisioning was required. Would then run vagrant provision from the windows command line. do no know if that will succeed at this moment. Only got this far by disabling logging. :-(
+
 To run the app use vagrant ssh to get into the box.
   Authentication is via key pairs.
   You are logged in as vagrant user.
