@@ -52,7 +52,7 @@ sudo chmod 644 "$DBYML"
 bundle install
 
 # Create DB (Once only)
-rake db:create | tee -a /var/log/vagrant_setup.log
+rake db:create
 
 # Start rails server
 #rails server -b 0.0.0.0

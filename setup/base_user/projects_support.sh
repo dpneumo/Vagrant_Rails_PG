@@ -21,11 +21,9 @@ mkdir -p ~/scripts
 if ! grep '# Add scripts' ~/.profile ; then
   cat - >> ~/.profile <<-EOF
 
-	# Add scripts to PATH if not yet included
-	if ! [[ \$PATH =~ (^|:)"\~/scripts"(:|$) ]]; then
-	  export PATH=\~/scripts:\$PATH
-	fi
+	# Add scripts to PATH
+	export PATH="$HOME/scripts:\$PATH"
 EOF
-fi && source ~/.profile
+fi && . ~/.profile
 
 completed "project support setup"

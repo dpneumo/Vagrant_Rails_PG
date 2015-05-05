@@ -38,5 +38,5 @@ Vagrant.configure('2') do |config|
   config.vm.provision :shell, path: 'setup/setup_base_user.sh', privileged: false
 
   # -- setup project --
-  #config.vm.provision :shell, path: 'setup/setup_project.sh', privileged: false
+  config.vm.provision :shell, path: 'setup/setup_project.sh', privileged: false
 end

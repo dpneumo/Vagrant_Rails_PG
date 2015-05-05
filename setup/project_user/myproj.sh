@@ -21,6 +21,13 @@ cat - > ~/scripts/build_proj.sh <<-EOF
 EOF
 
 chmod +x ~/scripts/build_proj.sh
-echo "alias build_proj='~/scripts/build_proj.sh'" >> ~/.bashrc
+
+if ! grep 'alias build_proj' ~/.profile ; then
+  cat - >> ~/.profile <<-EOF
+
+	# Simplify running script from command line
+	alias build_proj='~/scripts/build_proj.sh'
+EOF
+fi && . ~/.profile
 
 completed "My Project setup"

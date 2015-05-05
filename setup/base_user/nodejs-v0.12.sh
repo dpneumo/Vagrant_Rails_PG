@@ -34,12 +34,14 @@ npm config set prefix '~/npm-global'
 if ! grep '# Add npm-global/bin' ~/.profile ; then
   cat - >> ~/.profile <<-EOF
 
-	# Add npm-global/bin to PATH if not yet included
-	if ! [[ \$PATH =~ (^|:)"\~/npm-global/bin"(:|$) ]]; then
-	    export PATH=\~/npm-global/bin:\$PATH
-	fi
+	# Add npm-global/bin to PATH
+	export PATH="$HOME/npm-global/bin:\$PATH"
 EOF
-fi && source ~/.profile
+fi && . ~/.profile
+
+# Since source ~/.profile fails for the next script...
+#export PATH="$HOME/npm-global/bin:$PATH"
+
 
 # install global tools
 npm install -g jshint

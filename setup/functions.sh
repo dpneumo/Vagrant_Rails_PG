@@ -19,7 +19,7 @@ function provision_1x () {
   else
     source "$script_dir/$resource_name.sh"
     touch $provisioned
-  fi | tee -a /var/log/vagrant_setup.log
+  fi #| tee -a /var/log/vagrant_setup.log
 }
 
 
